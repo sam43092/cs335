@@ -38,9 +38,9 @@ def donuts(count):
 def both_ends(s):
   length = len(s)
   if length > 2:
-    r = s[1:2] + s[-2:]
+    r = s[0:2] + s[-2:]
   else:
-    r = " "
+    r = ""
   return r
 
 
@@ -55,8 +55,8 @@ def both_ends(s):
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
   c= s[0]
-  s.replace(c, "*")
-  return
+  s = s.replace(c, "*")
+  return c + s[1:]
 
 
 # D. MixUp
@@ -67,8 +67,9 @@ def fix_start(s):
 #   'dog', 'dinner' -> 'dig donner'
 # Assume a and b are length 2 or more.
 def mix_up(a, b):
-  # +++your code here+++
-  return
+  temp1 = b[0:2] + a[2:]
+  temp2 = a[0:2] + b[2:]
+  return temp1 + " " + temp2
 
 
 # Provided simple test() function used in main() to print
