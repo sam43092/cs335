@@ -38,6 +38,8 @@ print_words() and print_top().
 """
 
 import sys
+import string
+
 
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
@@ -48,26 +50,32 @@ import sys
 def create_dict(filename):
   count_words = {}
   infile = open(filename, 'r')
-
+  
+ 
+  
   for entry in infile:
-    words = entry.split()
+    words = entry.strip().split()
     for word in words:
       word = word.lower()
+      word = word.translate(None, string.punctuation)
   
   # if the word has not been seen yet count = 1
   # if it has, match the word and increase count by 1
-    if not word in count_words:
-      count_words[word] = 1
-    else:
-      count_words[word] += 1
-  
+      if not word in count_words:
+        count_words[word] = 1
+      else:
+        count_words[word] += 1
+    
   return count_words
  
 #******************** 
 def print_words(filename):
-  count_words = sorted(create_dict(filename))
   
-  for word in count_words:
+  count_words = create_dict(filename)
+  
+  new_words = sorted(count_words.keys())
+  
+  for word in new_words:
     print word, count_words[word]
 
 #*********************
