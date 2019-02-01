@@ -57,19 +57,20 @@ def extract_names(filename):
   name_dict = {}
   
   for rank, boy, girl in tuples:
-    #print rank + " " + boy + " " + girl
     if boy not in name_dict:
       name_dict[boy] = rank
     if girl not in name_dict:
       name_dict[girl] = rank
-      
-  sort_names = sorted(name_dict.keys())
   
-  for name in sort_names:
-    sort_names.append(name + " " + sort_names(name))
+  name_list = sorted(name_dict.keys())
   
-  return sort_names
-
+  f = open('foo.html.summary.txt', 'w')
+  
+  for name in name_list:
+    print name + " " + name_dict[name]
+    f.write(str(name + " " + name_dict[name] + "\n"))
+  
+  f.close()
 
 def main():
   # This command-line parsing code is provided.
@@ -85,13 +86,15 @@ def main():
   summary = False
   if args[0] == '--summaryfile':
     summary = True
-    del args[0]
+    #del args[0]
+    extract_names(args[1])
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
-  filename = sys.argv[1]
-  extract_names(filename)
+  else:
+    filename = sys.argv[1]
+    extract_names(filename)
   
 if __name__ == '__main__':
   main()
