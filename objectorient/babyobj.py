@@ -25,14 +25,14 @@ class BabyNames:
                         n = re.findall(r"<li> <a href=\".*?\">(.*?)</a>", name)
                     else:
                         n = re.findall(r"<li>(.*?)</li>", name)
-                    #print n
+                    print n
                     
             elif((int(year[0]) == 2016) or (int(year[0]) == 2014)):
                 names = re.findall(r"<div class=\"row\"><ol class=\"rankingList small-12 medium-5 large-5 columns\">(.*?)</ol>", text.read())
                 for name in names:
                     if re.match(r"<li> <a href=\"/.*?\"", name):
                         n = re.findall(r"<li> <a href=\".*?\">(.*?)</a>.*?</li>", name)
-                        #print n
+                        print n
                         
             elif(int(year[0]) == 2017):
                 names = re.findall(r"<div class=\"row\"><ol class=\"rankingList small-12 medium-5 large-5 columns\">(.*?)</ol>", text.read())
@@ -40,7 +40,7 @@ class BabyNames:
                 for name in names:
                     if re.match(r"<li> <a href=\"/.*?\"", name):
                         n = re.findall(r"<li> <a href=\".*?\">(.*?)</a>", name)
-                        $print n
+                        print n
     def printNames(self):
         print "print"
         #print self.names
